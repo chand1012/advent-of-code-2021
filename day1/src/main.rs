@@ -1,6 +1,7 @@
 use std::io;
 
 fn main() {
+    // start part 1
     // get stdin
     let mut input = String::new();
 
@@ -40,6 +41,43 @@ fn main() {
         }
     }
 
-    println!("{}", count)
+    println!("{}", count);
+    // end part 1
+    // start part 2
+
+    // new vector of i32 slices
+    let mut v2: Vec<&[i32]> = Vec::new();
+
+    // loop through vector
+    // jumping by three
+    for i in 0..v.len() {
+        if i < 3 {
+            v2.push(&v[0..i]);
+        } else if i > v.len() - 3 {
+            v2.push(&v[i..v.len()]);
+        } else {
+            v2.push(&v[i..i+3]);
+        }
+    }
+
+    count = 0;
+
+    // loop through each group
+    for i in 0..v2.len() - 1 {
+        // get the sum of the group
+        let current_sum: i32 = v2[i].iter().sum();
+        // get the next sum of the group
+        let next_sum: i32 = v2[i+1].iter().sum();
+        
+        // if the next sum is greater than the current sum
+        if next_sum > current_sum {
+            // increment count
+            count += 1;
+        }
+    }
+
+    println!("{}", count);
+
+    // end part 2
 
 }
