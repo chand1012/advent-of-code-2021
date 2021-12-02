@@ -44,10 +44,11 @@ fn main() {
         input.clear();
     }
 
+    // part 1
     let mut horizontal: i32 = 0;
     let mut depth: i32 = 0;
 
-    for command in v {
+    for command in &v {
         // switch statement
         match command.direction.as_str() {
             "forward" => horizontal += command.distance,
@@ -60,5 +61,35 @@ fn main() {
     println!("horizontal: {}", horizontal);
     println!("depth: {}", depth);
     println!("multiplied: {}", horizontal * depth);
+    // end part 1
+    // part 2
 
+    // print separator
+    println!("");
+
+    horizontal = 0;
+    depth = 0;
+    let mut aim: i32 = 0;
+
+    for command in &v {
+        // switch statement
+        match command.direction.as_str() {
+            "forward" => horizontal += command.distance,
+            "down" => aim += command.distance,
+            "up" => aim -= command.distance,
+            _ => panic!("Invalid direction"),
+        }
+
+        if command.direction == "forward" {
+            depth += aim * command.distance;
+        }
+
+    }
+
+    println!("horizontal: {}", horizontal);
+    println!("depth: {}", depth);
+    println!("aim: {}", aim);
+    println!("multiplied: {}", horizontal * depth);
+
+    // end part 2
 }
